@@ -1,0 +1,20 @@
+{% if data.hasNewVersion %}
+    <div class="top-nav-buttons top-nav-items filter-container area-container notify-container flex flex-column flex-cntr mrgn-right-left-10">
+        {% set btnsParam = {
+            includs: {
+                renderButtons: {
+                    '/component/buttons/button.twig': {
+                        btn_text: 'Yükləyin',
+                        btn_attr_list: {
+                            class: 'btn btn-indigo-blue-900 width-100 download-update update-nav-button'
+                        }
+                    }
+                }                                           
+            }
+        } %}
+        <span class="fields-label margin-0 update-nav-title">Yenilənmə mövcuddur</span>
+        
+        {% include '/component/include_once_component.twig' with btnsParam %}            
+    </div>  
+{% endif %}
+

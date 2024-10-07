@@ -1,0 +1,68 @@
+    {# <ul class="checkbox-container {{data.containerClassList}}">
+        {% for key, val in data.cehckerList %}
+        <li class="checkbox-list">
+            <a href="javascript:void(0)" class="select-item checkbox-item {{checkerItemClassList}}">
+                <span class="widget__check-icon">
+                    <i class="las la-check"></i>
+                </span>
+                <span class="widget__button-text">{{val.title}}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul> #}
+
+
+
+   {# {% set searh_param = {
+		widget: {
+			widgetClassList: 'widget-fields width-100',
+			widgetContainerClassList: 'widget-fields-container',
+		},
+		input: {
+			label: 'adsa',
+			icon: 'la-address-card',
+			classList: 'scroll-auto area-button input-dropdown form-input',
+			attrList: {
+				'data-id': 'fdfdsf'
+			},
+		},		
+		checkbox: {
+			containerClassList: 'width-100 input-dropdown-parent',
+			type: 'some'
+			list: {
+				checkboxData: custom_arr,
+				itemContainerClassList: 'input-dropdown-auto-list-parent',
+				itemWrapperClassList: 'input-dropdown-auto-ul',
+				itemClassList: ''
+			}
+			
+		},
+   }
+   %} #}
+
+<div class="widget__search {{data.widget.widgetClassList}}">
+	<div class="widget__search-container {{data.widget.widgetContainerClassList}}">
+		<div class="area-container search-container {{data.checkbox.containerClassList}}">
+			{% if data.input.label %}	
+				<span class=" fields-label">{{data.input.label}}</span>
+			{% endif %}			
+			<div class="search-input-wrp">
+				{% if data.input.icon %}
+				<div class="widget__search-icon button-icon-i search-icon">
+					<i class="{{data.input.icon}}"></i>
+				</div>
+				{% endif %}
+								
+				<input autocomplete="off" class="input search-input search-action {{data.input.classList}}" 
+                        {% for attrName, attrVal in data.input.attrList %}
+                            {{attrName}} = "{{attrVal}}"
+                        {% endfor %}  
+                required />		
+			</div>			
+
+			{% if data.checkbox.list.checkboxData %}
+				{{ include ('/component/parts/checkbox/checkbox-list.twig', {checkboxType: data.checkbox.type, checkbox: data.checkbox }) }}					
+			{% endif %}	
+		</div>
+	</div>
+</div>    

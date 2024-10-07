@@ -1,0 +1,45 @@
+<div class="fields ">
+
+	{% set custom_arr = {} %}
+
+    {% for row, val in row.value %}
+        {% set custom_arr = custom_arr|merge({(loop.index0) : {
+			'custom_value':	 	val.title, 
+			'custom_data_id': 	val.ruleName, 
+			'some': 			val.active,
+			'id': 				val.id
+		}}) %}
+    {% endfor %}
+
+   {% set searh_param = {
+		widget: {
+			widgetClassList: 'widget-fields width-100',
+			widgetContainerClassList: 'widget-fields-container',
+		},
+		input: {
+			label: 'Məlumata baxmağı məhdudlaşdırın (Cədvəldə göstərilən məlumatları seçərkən, onun baxışı istifadəçi üçün məhdudlaşdırılacaq)',
+			icon: 'las la-eye-slash',
+			classList: 'scroll-auto area-button input-dropdown form-input',
+			attrList: {
+				'data-id': 'fdfdsf',
+                'type': 'button',
+                value: 'Seçin'
+			},
+		},		
+		checkbox: {
+			containerClassList: 'width-100 input-dropdown-parent',
+			type: 'some',
+			list: {
+				icon: 'las la-lock',
+				checkboxData: custom_arr,
+				itemContainerClassList: 'input-dropdown-auto-list-parent',
+				itemWrapperClassList: 'input-dropdown-auto-ul',
+				itemClassList: 'user-data-access-checkbox'
+			}
+			
+		},
+   }
+   %}
+
+    {% include '/component/parts/checkbox/checker.twig'  with { 'data': searh_param }  %}
+</div>

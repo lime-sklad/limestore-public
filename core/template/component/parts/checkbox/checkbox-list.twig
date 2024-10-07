@@ -1,0 +1,28 @@
+<div class="area-content widget__content search-content {{checkbox.list.itemContainerClassList}} ">
+	<ul class="ls-custom-scrollbar select-list select-saerch-list search-list-content {{checkbox.list.itemWrapperClassList}}">
+		{% if checkbox.list.checkboxData %}
+			{% for key, val in checkbox.list.checkboxData %}
+
+				<li class="select-items">
+					<a href="javascript:void(0)" 
+					class="select-item checkbox-item {{checkbox.list.itemClassList}} {{val.some}} " 
+					value="{{val.custom_value}}"
+					data-id="{{val.id}}"
+					>
+						<span class="widget__check-icon">
+						{% if checkbox.list.icon %}
+							<i class="{{checkbox.list.icon}}"></i>
+						{% else %}
+							<i class="las la-check"></i>
+						{% endif %}	
+
+						</span>
+						<span class="widget__button-text">{{val.custom_value}}</span>
+					</a>									
+				</li>	
+			
+			{% endfor %}
+		{% endif %}
+
+	</ul>
+</div>

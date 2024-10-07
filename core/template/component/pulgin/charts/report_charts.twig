@@ -1,0 +1,78 @@
+<div class="component_container mrgn-bottom-50">
+    <canvas id="myChart" height="50"></canvas>
+</div>
+
+<script defer>
+
+        $.ajax({
+            type: 'POST',
+            url: 'ajax_route.php',
+            data: {
+                url: 'core/pulgin/charts/report_month_chart_stats.php',
+                route: 'reportChart',
+            },
+            beforeSend: function( ){
+            },
+            complete: function() {
+            },            
+            success: (data) => {
+                var xValues = data.turnover.date_list;
+                var yValues = data.turnover.sum_list;
+                var barColors = ["red", "green","blue","orange","brown"];
+    
+
+                let delayed;
+                new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [
+                        {
+                            label: 'ÜMUMI DÖVRIYYƏ',
+                            data: yValues,
+                            backgroundColor: 'rgb(38 61 221 / 40%)',
+                        },
+                        {
+                            label: 'MƏNFƏƏT',
+                            data: data.profit.sum_list,
+                            backgroundColor: 'rgb(158 255 158 / 80%)',
+                        },
+                                        
+                    ]
+                },
+                options: {
+                    animation: {
+                        onComplete: () => {
+                            delayed = true;
+                        },
+                        delay: (context) => {
+                            let delay = 0;
+                            if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                delay = context.dataIndex * 150 + context.datasetIndex * 150;
+                            }
+                            return delay;
+                        },
+                    },                    
+                    legend: {
+                        display: true,
+                        text: 'dsds'
+                    },
+                    title: {
+                        display: true,
+                        text: "вдаывллд",
+                    },
+                    plugins: {
+                        colors: {
+                            enabled: true,
+                            forceOverride: false,
+                        }
+                    }                    
+                }
+            });
+
+
+
+            }
+        });
+ 
+</script>

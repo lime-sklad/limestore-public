@@ -1,0 +1,35 @@
+{% set visible = 'hide' %}
+<div class="top-nav-items filter-container area-container notify-container">
+    <a href="javascript:void(0)" class="top-nav-buttons ls-dropdown-buttons notify-button widget__button-action flex-cntr area-button" role="button">
+        <div class="sidebar-list-icon">
+            <span class="button-icon-i  ls-top-nav-dropdown-icon pos-relative">
+                <i class="las la-bell"></i>
+
+                {% if data.expired_notify %} 
+                    {% set visible = 'show' %}
+                {% endif %} 
+                
+                <span class="widget__mark widget__mark-right-notify {{visible}}"></span> 
+
+            </span>
+        </div>
+    </a> 
+    <div class="widget__content area-content ls-dropdown-content">
+     <ul class="select-list width-100 ls-custom-scrollbar ls-dropdown-list notify-list">
+    
+
+      {% if data.expired_notify %}
+        <li class="select-items ls-dropdown-items notify-list">
+            <span class="mark-text mark mark-danger width-100 padding-5">{{data.notify.expired_notify}}</span>
+        </li>
+
+      {% endif %}
+        
+
+        {% if data.expired_notify == false %}
+            <span class="flex-cntr mark-text mark-default notify-empty">Yeni bildiriş yoxdur</span>
+        {% endif %}
+
+     </ul>
+    </div>
+</div>

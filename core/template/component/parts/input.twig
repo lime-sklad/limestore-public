@@ -1,0 +1,42 @@
+<div class="input-container">
+    {% if data.inputIcon %}
+        {% set HasIconRight = 'input-icon' %}
+    
+        {% if data.inputIcon.iconRight %}
+            {% set HasIconRight = 'icon icon-right' %}
+        {% endif %}
+        <div class="button-icon-i {{HasIconRight}}">
+		    <i class="{{data.inputIcon.icon}}"></i>
+		</div>
+    {% endif %}
+
+    {% if data.inputLabel %}
+        <span class="fields-label {{data.inputLabel.labelClassList}}">{{data.inputLabel.labelValue}}</span>
+    {% endif %}
+    
+    <input class="input {{data.inputClassList}}"
+    
+    {% for attrName, attrVal in data.attr %}
+        {{attrName}} = "{{attrVal}}"
+    {% endfor %}
+    />
+</div>
+
+
+    {# data[
+        inputClassList => 'input',
+        inputIcon => [
+            icon => 'iconVal',
+            iconRight => true/false
+        ],
+        inputLabel => [
+            labelValue => '...',
+            labelClassList => '...'
+        ]
+        attr => [
+            type: text/button ?: 
+            input attribute
+        ]
+    ]; #}
+
+ 

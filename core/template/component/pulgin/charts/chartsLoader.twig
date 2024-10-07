@@ -1,0 +1,32 @@
+<div class="component_container mrgn-bottom-50 {{data.wrapperClassList}} ">
+    <canvas id="{{data.chartsName}}" class="jjj" height="50" data-rout="{{data.scriptRoute}}"></canvas>
+</div>
+
+<script defer>
+// Предположим, что data.chartsName содержит значение для ключа и значение, которое вы хотите добавить
+var key = '{{data.scriptRoute}}';
+
+    var {{data.chartsName}} = new Chart('{{data.chartsName}}', {
+        type: '{{data.chartsType}}',
+        data: {
+            labels: null,
+            datasets: [{
+                data: null,
+                hoverOffset: 5
+            }]      
+        },
+    }); 
+
+
+    list[key] = {{data.chartsName}};
+
+    {# routeList.push({
+        '{{data.chartsName}}': '{{ data.scriptRoute }}'
+    }); #}
+
+
+    var date = $('.report-date-picker').val();
+
+    drawCharts({{data.chartsName}}, date, '{{ data.scriptRoute }}');   
+        
+</script>

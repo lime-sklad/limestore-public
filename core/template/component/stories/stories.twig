@@ -1,0 +1,178 @@
+
+<div class="stories-container">  
+
+  {# <div class="story stories-image" style="background-image: url('/assets/img/pattern/2.jpg')" 
+                                              data-image="/assets/img/pattern/2.jpg"></div>
+  <div class="story stories-image" style="background-image: url('/assets/img/pattern/4.jpg')" 
+                                              data-image="/assets/img/pattern/4.jpg"></div>
+  <div class="story stories-image" style="background-image: url('/dev/2aca85799a5f4085927639d63ab19d76.jpg')" 
+                                              data-image="/dev/2aca85799a5f4085927639d63ab19d76.jpg"></div>
+  <div class="story stories-image" style="background-image: url('/dev/jfjjf.png')" 
+                                              data-image="/dev/jfjjf.png"></div> #}
+
+  {# <div class="story stories-video" style="background-image: url('/dev/yuy.png')" data-image="/dev/yuy.png" data-video="/dev/jjj.mp4"></div> #}
+</div>
+
+
+{# <div class="modal barcode-edit-modal  animate__animated animate__fadeInUp animate__faster  ">
+    <div class="modal-content">
+    <div class="image"></div>   
+
+        <div class="controller">
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div>
+  </div> 
+</div> #}
+
+<style>
+
+.stories-modal {
+  width: 360px;
+  margin: auto;
+  box-shadow: unset;
+  height: 88vh;
+  max-height: 800px;
+  border-radius: 8px;
+}
+
+.stories-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.story {
+    width: 40px;
+    height: 100%;
+    margin-right: 15px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    /* box-shadow: var(--input_focus_shadow) #ff0808c4; */
+    flex-shrink: 0;
+    position: relative;
+    border: 2px solid #fff;
+}
+
+
+.story:before {
+  content: "";
+  --size: 10px;
+  width: 100%;
+  height: 100%;
+  /* left: calc(0.3px - (var(--size) / 2)); */
+  /* top: calc(0.3px - (var(--size) / 2)); */
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 90deg at 40% -25%, #ffd700, #f79d03, #ee6907, #e6390a, #de0d0d, #d61039, #cf1261, #c71585, #cf1261, #d61039, #de0d0d, #ee6907, #f79d03, #ffd700, #ffd700, #ffd700);
+  position: absolute;
+  z-index: -1;
+  transform-origin: center;
+  transform: scale(1.3);
+  transition: .5s;
+  opacity: .8;
+}
+
+.story:hover {
+  cursor: pointer;
+}
+
+.story:hover::before {
+  transform: scale(1.4);
+}
+
+.modal-content {
+    background: gray;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+
+.image > img, .image > video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.image {
+  height: 100%;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.controller {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.next:hover, .prev:hover {
+  opacity: .3;
+}
+
+.prev {
+  background: linear-gradient(90deg, white, transparent);
+}
+
+.next {
+  background: linear-gradient(-90deg, white, transparent);
+}
+
+.next, .prev {
+  flex-basis: 50%;
+  opacity: 0;
+  transition: .5s;
+  border: 0;
+}
+
+.modal-content:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 65%);
+  z-index: 99;
+  backdrop-filter: blur(24px);
+}
+
+
+
+</style>
+
+<script defer>
+document.addEventListener("DOMContentLoaded", function(event) { 
+  setTimeout(function() {
+$.ajax({
+    type: 'POST',
+    url: 'ajax_route.php',
+    data: {
+      route: 'getStories',
+    },
+    dataType: 'json',
+    async: true,
+    beforeSend: function() {},
+    complete: function() {},    
+    success: (data) => {
+      $('.stories-container').html(data.res);
+    }
+  });
+  }, 0);
+});
+
+
+</script>

@@ -1,0 +1,19 @@
+{% if data.hasUpdate %}
+    <li class="select-items ls-dropdown-items notify-list">
+        <span class="fields-label">Yenilənmə mövcuddur</span>
+        {% set btnsParam = {
+            includs: {
+                renderButtons: {
+                    '/component/buttons/button.twig': {
+                        btn_text: 'Yükləyin',
+                        btn_attr_list: {
+                            class: 'btn btn-indigo-blue-900 width-100 download-update'
+                        }
+                    }
+                }                                           
+            }
+        } %}
+        
+        {% include '/component/include_once_component.twig' with btnsParam %}            
+    </li>  
+{% endif %}

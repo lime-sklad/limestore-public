@@ -1,0 +1,21 @@
+<div class="fields form-fields">
+    <span class="fields-label">Məlumata baxmağı məhdudlaşdırın 
+    </span>
+    
+    {% for row, val in row.value %}
+        <div class="fields flex-row form-fields margin-0 switcher-fields">
+            <span class="fields-label switcher-label">{{val.title}}</span>
+        {% include '/component/buttons/switcher.twig' with {
+            'data': {
+                'btn_attr_list': {
+                    'class': 'user-access-action-switcher switcher-new-state ls-switcher-red ' ~ (val.active ? 'old' : 'new'),
+                    'data-radio-state': val.active ? 1 : 0,
+                    'value': val.active ? 1 : 0,
+                    'data-fields-name': 'change_min_quantity',
+                    'data-id': val.id
+                }
+            }
+        } %}
+        </div>
+    {% endfor %}
+</div>

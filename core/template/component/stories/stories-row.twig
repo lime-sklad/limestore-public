@@ -1,0 +1,9 @@
+{% for key, val in data.contentData %}
+        {% if val.type == 'image' %}
+            <div class="story stories-image" style="background-image: url('{{val.url}}')" data-image="{{val.url}}"></div>        
+        {% endif %}
+
+        {% if val.type == 'video' %}
+            <div class="story stories-video" style="background-image: url('/dev/yuy.png')" data-image="/dev/yuy.png" data-video="{{val.url}}"></div>        
+        {% endif %}
+  {% endfor %}
